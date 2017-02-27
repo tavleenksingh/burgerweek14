@@ -5,6 +5,11 @@ var router = express.Router();
 // Import the model (burger.js) to use its database functions.
 var burgerData = require("../models/burger.js");
 
+// get route -> index
+router.get("/", function(req, res) {
+  res.redirect("/burgers");
+});
+
 // Create all our routes and set up logic within those routes where required.
 router.get("/burgers", function(req, res) {
   burgerData.selectAll(function(data) {
@@ -16,7 +21,7 @@ router.get("/burgers", function(req, res) {
   });
 });
 
-router.post("/burgers/create", function(req, res) {
+router.post("burgers/create", function(req, res) {
   burgerData.insertOne([
     "burger_name"
   ], [
@@ -26,7 +31,7 @@ router.post("/burgers/create", function(req, res) {
   });
 });
 
-router.put("/burgers/update", function(req, res) {
+router.put("burgers/update", function(req, res) {
     burgerData.updateOne([
         "id"
     ], [
